@@ -1,0 +1,4 @@
+Filter will take - 7 days
+Search - 5 days
+Hide/show table column - 5
+Ascending/Descending order - 4
