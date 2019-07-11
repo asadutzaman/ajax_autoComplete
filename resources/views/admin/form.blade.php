@@ -61,8 +61,7 @@
                         </div>
                         <!-- Button -->
                         <div class="form-group row">
-                            <button >Submit </button>
-                            
+                            <button class="success">Submit </button>
                         </div>
                     </div>
                 </div>
