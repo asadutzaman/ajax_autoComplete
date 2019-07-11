@@ -69,5 +69,47 @@
         </div> <!-- end row -->
     </div><!-- container -->
 </div> <!-- Page content Wrapper -->
+<script type="text/javascript">
+          
 
+//autocomplete script
+$(document).on('focus','.autocomplete_txt',function(){
+  type = $(this).data('type');
+  
+  if(type =='name' )autoType='name'; 
+  if(type =='contact_person' )autoType='contact_person'; 
+  if(type=='contact_number')autoType='contact_number';
+  if(type=='alt_contact_number')autoType='alt_contact_number';
+  if(type=='supplier_mail')autoType='supplier_mail';
+  if(type=='supplier_address')autoType='supplier_address';
+  if(type=='extra_info')autoType='extra_info';
+  
+   $(this).autocomplete({
+       minLength: 0,
+       source: function( request, response ) {
+            $.ajax({
+                url: "{{ route('searchajax') }}",
+                dataType: "json",
+                data: {
+                    term : request.term,
+                    type : type,
+                },
+                success: function(data) {
+                    var array = $.map(data, function (item) {
+                        return {
+                           label: item[autoType],
+                           value: item[autoType],
+                           data : item
+                        }
+                    });
+                    response(array)
+                }
+            });
+       },
+       
+   });
+   
+   
+});
+</script>
 @endsection
