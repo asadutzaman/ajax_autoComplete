@@ -1,6 +1,9 @@
 @extends('admin.layout.app')
 @section('contents')
-
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <div class="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -74,19 +77,19 @@
 
 //autocomplete script
 $(document).on('focus','.autocomplete_txt',function(){
-  type = $(this).data('type');
+    type = $(this).data('type');
+    
+    if(type =='name' )autoType='name'; 
+    if(type =='contact_person' )autoType='contact_person'; 
+    if(type=='contact_number')autoType='contact_number';
+    if(type=='alt_contact_number')autoType='alt_contact_number';
+    if(type=='supplier_mail')autoType='supplier_mail';
+    if(type=='supplier_address')autoType='supplier_address';
+    if(type=='extra_info')autoType='extra_info';
   
-  if(type =='name' )autoType='name'; 
-  if(type =='contact_person' )autoType='contact_person'; 
-  if(type=='contact_number')autoType='contact_number';
-  if(type=='alt_contact_number')autoType='alt_contact_number';
-  if(type=='supplier_mail')autoType='supplier_mail';
-  if(type=='supplier_address')autoType='supplier_address';
-  if(type=='extra_info')autoType='extra_info';
-  
-   $(this).autocomplete({
-       minLength: 0,
-       source: function( request, response ) {
+    $(this).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
             $.ajax({
                 url: "{{ route('searchajax') }}",
                 dataType: "json",
@@ -105,11 +108,8 @@ $(document).on('focus','.autocomplete_txt',function(){
                     response(array)
                 }
             });
-       },
-       
-   });
-   
-   
+        },
+    });
 });
 </script>
 @endsection
