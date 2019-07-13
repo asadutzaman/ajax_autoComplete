@@ -39,7 +39,7 @@
                 </div>
                 <!-- alt_contact_person -->
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">Alt Contact Person:</label>
+                    <label for="example-text-input" class="col-sm-2 col-form-label">Alt Contact number:</label>
                     <div class="col-sm-10">
                         <input class="form-control autocomplete_txt" type='text' data-type="alt_contact_person" id='alt_contact_person' name='alt_contact_person'/>
                     </div>
@@ -53,7 +53,7 @@
                 </div>
                 <!-- supplier_address -->
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">Supplier Name:</label>
+                    <label for="example-text-input" class="col-sm-2 col-form-label">Supplier Address:</label>
                     <div class="col-sm-10">
                         <input class="form-control autocomplete_txt" type='text' data-type="supplier_address" id='supplier_address' name='supplier_address'/>
                     </div>
@@ -84,6 +84,8 @@ $(document).on('focus','.autocomplete_txt',function(){
   if(type =='name' )autoType='name'; 
   if(type =='contact_person' )autoType='contact_person'; 
   if(type=='contact_number')autoType='contact_number';
+  if(type=='supplier_email')autoType='supplier_email';
+  if(type=='supplier_address')autoType='supplier_address';
   
    $(this).autocomplete({
        minLength: 0,

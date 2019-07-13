@@ -18,6 +18,12 @@ class AjaxAutocompleteController extends Controller
         if($request->type=='contact_number'){
             $suppliers->where('contact_number','LIKE','%'.$query.'%');
         }
+        if($request->type=='supplier_email'){
+            $suppliers->where('supplier_email','LIKE','%'.$query.'%');
+        }
+        if($request->type=='supplier_address'){
+            $suppliers->where('supplier_address','LIKE','%'.$query.'%');
+        }
         
         $suppliers=$suppliers->get();        
         $data=array();
@@ -25,6 +31,8 @@ class AjaxAutocompleteController extends Controller
             $data[]=array('name'=>$supplier->name);
             $data[]=array('contact_person'=>$supplier->contact_person);
             $data[]=array('contact_number'=>$supplier->contact_number);
+            $data[]=array('supplier_email'=>$supplier->supplier_email);
+            $data[]=array('supplier_address'=>$supplier->supplier_address);
         }
         if(count($data))
             return $data;
@@ -32,5 +40,7 @@ class AjaxAutocompleteController extends Controller
             return ['name'=>'','sortname'=>''];
             return ['contact_person'=>'','sortname'=>''];
             return ['contact_number'=>'','sortname'=>''];
+            return ['supplier_email'=>'','supplier_email'=>''];
+            return ['supplier_address'=>'','supplier_address'=>''];
     }
 }
