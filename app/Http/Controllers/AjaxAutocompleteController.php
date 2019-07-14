@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use DB;
 class AjaxAutocompleteController extends Controller
 {
-    public function index(){        
+    public function index(){
+        
         return view('admin.form');
     }
     public function searchResponse(Request $request){
