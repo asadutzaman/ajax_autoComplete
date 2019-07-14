@@ -16,3 +16,6 @@
 <link href="/admin-asset/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/admin-asset/assets/css/icons.css" rel="stylesheet" type="text/css">
 <link href="/admin-asset/assets/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

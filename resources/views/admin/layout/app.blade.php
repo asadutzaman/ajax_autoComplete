@@ -6,7 +6,7 @@
     </head>
 
     <body class="fixed-left">
-        @include('admin.layout.preloader')<!--Preloader-->
+        <!--Preloader-->
         <!-- Begin page -->
         <div id="wrapper">
             @include('admin.layout.sidebar') <!--Including sidebar (side navigation) -->

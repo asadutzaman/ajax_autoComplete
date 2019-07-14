@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Maroon</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-</head>
-<body>
+@extends('admin.layout.app')
+@section('contents')
 <div class="container">
 <div class="row">
     <div class="col-md-6">
@@ -79,17 +71,17 @@
 
 //autocomplete script
 $(document).on('focus','.autocomplete_txt',function(){
-  type = $(this).data('type');
+    type = $(this).data('type');
   
-  if(type =='name' )autoType='name'; 
-  if(type =='contact_person' )autoType='contact_person'; 
-  if(type=='contact_number')autoType='contact_number';
-  if(type=='supplier_email')autoType='supplier_email';
-  if(type=='supplier_address')autoType='supplier_address';
+    if(type =='name' )autoType='name'; 
+    if(type =='contact_person' )autoType='contact_person'; 
+    if(type=='contact_number')autoType='contact_number';
+    if(type=='supplier_email')autoType='supplier_email';
+    if(type=='supplier_address')autoType='supplier_address';
   
-   $(this).autocomplete({
-       minLength: 0,
-       source: function( request, response ) {
+    $(this).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
             $.ajax({
                 url: "{{ route('searchajax') }}",
                 dataType: "json",
@@ -108,12 +100,8 @@ $(document).on('focus','.autocomplete_txt',function(){
                     response(array)
                 }
             });
-       },
-       
-   });
-   
-   
+        },
+    });
 });
 </script>
-</body>
-</html>
+@endsection
