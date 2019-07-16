@@ -11,44 +11,9 @@
                         <p class="text-muted m-b-30 font-14">Supplier database table data</p>
                         <!-- name -->
                         <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Name:</label></br>
+                            <label for="example-text-input" class="col-form-label">invoice_number:</label></br>
                             <div class="col-sm-12">
-                            <input class="form-control autocomplete_txt" type='text' data-type="name" id='name' name='name'/>
-                            </div>
-                        </div>
-                        <!-- contact_person -->
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Contact Person:</label></br>
-                            <div class="col-sm-12">
-                                <input class="form-control autocomplete_txt" type='text' data-type="contact_person" id='contact_person' name='contact_person'/>
-                            </div>
-                        </div>
-                        <!-- contact_number -->
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Contact number:</label></br>
-                            <div class="col-sm-12">
-                                <input class="form-control autocomplete_txt" type='text' data-type="contact_number" id='contact_number' name='contact_number'/>
-                            </div>
-                        </div>
-                        <!-- supplier_email -->
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Supplier Email:</label></br>
-                            <div class="col-sm-12">
-                                <input class="form-control autocomplete_txt" type='text' data-type="supplier_email" id='supplier_email' name='supplier_email'/>
-                            </div>
-                        </div>
-                        <!-- supplier_address -->
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Supplier Address:</label></br>
-                            <div class="col-sm-12">
-                                <input class="form-control autocomplete_txt" type='text' data-type="supplier_address" id='supplier_address' name='supplier_address'/>
-                            </div>
-                        </div>
-                        <!-- extra_info -->
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-form-label">Extra Info:</label></br>
-                            <div class="col-sm-12">
-                                <input class="form-control autocomplete_txt" type='text' data-type="extra_info" id='extra_info' name='extra_info'/>
+                            <input class="form-control autocomplete_txt" type='text' data-type="invoice_number" id='invoice_number' name='invoice_number'/>
                             </div>
                         </div>
                         <!-- Button -->
@@ -95,11 +60,7 @@
 $(document).on('focus','.autocomplete_txt',function(){
     type = $(this).data('type');
   
-    if(type =='name' )autoType='name'; 
-    if(type =='contact_person' )autoType='contact_person'; 
-    if(type=='contact_number')autoType='contact_number';
-    if(type=='supplier_email')autoType='supplier_email';
-    if(type=='supplier_address')autoType='supplier_address';
+    if(type =='invoice_number' )autoType='invoice_number';
   
     $(this).autocomplete({
         minLength: 0,
