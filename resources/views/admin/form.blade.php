@@ -8,12 +8,19 @@
                     <div class="card-body">
 
                         <h4 class="mt-0 header-title">Form</h4>
-                        <p class="text-muted m-b-30 font-14">Supplier database table data</p>
-                        <!-- name -->
+                        <p class="text-muted m-b-30 font-14">Inventory database table data</p>
+                        <!-- Invoice Number -->
                         <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">invoice_number:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="invoice_number" id='invoice_number' name='invoice_number'/>
+                            </div>
+                        </div>
+                        <!-- invoice_date -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">invoice_date:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="invoice_date" id='invoice_date' name='invoice_date'/>
                             </div>
                         </div>
                         <!-- Button -->
@@ -61,6 +68,7 @@ $(document).on('focus','.autocomplete_txt',function(){
     type = $(this).data('type');
   
     if(type =='invoice_number' )autoType='invoice_number';
+    if(type == 'invoice_date')autoType='invoice_date';
   
     $(this).autocomplete({
         minLength: 0,
