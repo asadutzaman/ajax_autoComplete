@@ -37,6 +37,13 @@
                             <input class="form-control autocomplete_txt" type='text' data-type="lot_number" id='lot_number' name='lot_number'/>
                             </div>
                         </div>
+                        <!--item_code -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	item_code:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="item_code" id='item_code' name='item_code'/>
+                            </div>
+                        </div>
 
                         <!-- Button -->
                         <div class="form-group row">
@@ -86,6 +93,7 @@ $(document).on('focus','.autocomplete_txt',function(){
     if(type == 'invoice_date')autoType='invoice_date';
     if(type == 'invoice_cost')autoType='invoice_cost';
     if (type=='lot_number')autoType='lot_number';
+    if (type=='	item_code')autoType='item_code';
   
     $(this).autocomplete({
         minLength: 0,
