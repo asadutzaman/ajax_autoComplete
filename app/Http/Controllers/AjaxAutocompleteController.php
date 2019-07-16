@@ -23,6 +23,10 @@ class AjaxAutocompleteController extends Controller
         if($request->type=='invoice_cost'){
             $inventories->where('invoice_cost','LIKE','%'.$query.'%');
         }
+        // lot_number
+        if($request->type=='lot_number'){
+            $inventories->where('lot_number', 'LIKE','%'.$query.'%');
+        }
         
         $inventories=$inventories->get();        
         $data=array();
@@ -30,6 +34,7 @@ class AjaxAutocompleteController extends Controller
             $data[]=array('invoice_number'=>$inventorie->invoice_number);
             $data[]=array('invoice_date'=>$inventorie->invoice_date);
             $data[]=array('invoice_cost'=>$inventorie->invoice_cost);
+            $data[]=array('lot_number'=>$inventorie->lot_number);
         }
         if(count($data)){
             return $data;
@@ -38,6 +43,7 @@ class AjaxAutocompleteController extends Controller
             return ['invoice_number'=>'','invoice_number'=>''];
             return ['invoice_date'=>'','invoice_date'=>''];
             return ['invoice_cost'=>'','invoice_cost'=>''];
+            return ['lot_number'=>'','lot_number'=>''];
         }    
     }
 }
