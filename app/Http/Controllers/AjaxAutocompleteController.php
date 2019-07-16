@@ -19,17 +19,25 @@ class AjaxAutocompleteController extends Controller
         if($request->type=='invoice_date'){
             $inventories->where('invoice_date','LIKE','%'.$query.'%');
         }
+        //invoice_cost
+        if($request->type=='invoice_cost'){
+            $inventories->where('invoice_cost','LIKE','%'.$query.'%');
+        }
         
         $inventories=$inventories->get();        
         $data=array();
         foreach ($inventories as $inventorie) {
             $data[]=array('invoice_number'=>$inventorie->invoice_number);
             $data[]=array('invoice_date'=>$inventorie->invoice_date);
+            $data[]=array('invoice_cost'=>$inventorie->invoice_cost);
         }
-        if(count($data))
+        if(count($data)){
             return $data;
-        else
+        }    
+        else {
             return ['invoice_number'=>'','invoice_number'=>''];
             return ['invoice_date'=>'','invoice_date'=>''];
+            return ['invoice_cost'=>'','invoice_cost'=>''];
+        }    
     }
 }
