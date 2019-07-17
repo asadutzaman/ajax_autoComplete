@@ -65,6 +65,27 @@
                             <input class="form-control autocomplete_txt" type='text' data-type="category" id='category' name='category'/>
                             </div>
                         </div>
+                        <!--supplier_id -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	supplier_id:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="supplier_id" id='supplier_id' name='supplier_id'/>
+                            </div>
+                        </div>
+                        <!--total_item -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	total_item:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="total_item" id='total_item' name='total_item'/>
+                            </div>
+                        </div>
+                        <!--unit_cost -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	unit_cost:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="unit_cost" id='unit_cost' name='unit_cost'/>
+                            </div>
+                        </div>
 
                         <!-- Button -->
                         <div class="form-group row">
@@ -118,6 +139,9 @@ $(document).on('focus','.autocomplete_txt',function(){
     if (type=='products_id')autoType='products_id';
     if (type=='product_name')autoType='product_name';
     if (type=='category')autoType='category';
+    if (type=='supplier_id')autoType='supplier_id';
+    if (type=='total_item')autoType='total_item';
+    if (type=='unit_cost')autoType='unit_cost';
   
     $(this).autocomplete({
         minLength: 0,
