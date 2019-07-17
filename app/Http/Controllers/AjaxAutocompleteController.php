@@ -31,6 +31,18 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='item_code'){
             $inventories->where('item_code','LIKE','%'.$query.'%');
         }
+        //products_id
+        else if($request->type=='products_id'){
+            $inventories->where('products_id','LIKE','%'.$query.'%');
+        }
+        //product_name
+        else if($request->type=='product_name'){
+            $inventories->where('product_name','LIKE','%'.$query.'%');
+        }
+        //category
+        else if($request->type=='category'){
+            $inventories->where('category','LIKE','%'.$query.'%');
+        }
         
         $inventories=$inventories->get();        
         $data=array();
@@ -40,6 +52,9 @@ class AjaxAutocompleteController extends Controller
             $data[]=array('invoice_cost'=>$inventorie->invoice_cost);
             $data[]=array('lot_number'=>$inventorie->lot_number);
             $data[]=array('item_code'=>$inventorie->item_code);
+            $data[]=array('products_id'=>$inventorie->products_id);
+            $data[]=array('product_name'=>$inventorie->product_name);
+            $data[]=array('category'=>$inventorie->category);
         }
         if(count($data)){
             return $data;

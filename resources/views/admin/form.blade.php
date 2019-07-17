@@ -44,6 +44,27 @@
                             <input class="form-control autocomplete_txt" type='text' data-type="item_code" id='item_code' name='item_code'/>
                             </div>
                         </div>
+                        <!--products_id -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	products_id:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="products_id" id='products_id' name='products_id'/>
+                            </div>
+                        </div>
+                        <!--product_name -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	product_name:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="product_name" id='product_name' name='product_name'/>
+                            </div>
+                        </div>
+                        <!--category -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	category:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="category" id='category' name='category'/>
+                            </div>
+                        </div>
 
                         <!-- Button -->
                         <div class="form-group row">
@@ -94,6 +115,9 @@ $(document).on('focus','.autocomplete_txt',function(){
     if(type == 'invoice_cost')autoType='invoice_cost';
     if (type=='lot_number')autoType='lot_number';
     if (type=='item_code')autoType='item_code';
+    if (type=='products_id')autoType='products_id';
+    if (type=='product_name')autoType='product_name';
+    if (type=='category')autoType='category';
   
     $(this).autocomplete({
         minLength: 0,
