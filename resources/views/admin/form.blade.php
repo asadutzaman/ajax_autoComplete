@@ -93,7 +93,7 @@ $(document).on('focus','.autocomplete_txt',function(){
     if(type == 'invoice_date')autoType='invoice_date';
     if(type == 'invoice_cost')autoType='invoice_cost';
     if (type=='lot_number')autoType='lot_number';
-    if (type=='	item_code')autoType='item_code';
+    if (type=='item_code')autoType='item_code';
   
     $(this).autocomplete({
         minLength: 0,
