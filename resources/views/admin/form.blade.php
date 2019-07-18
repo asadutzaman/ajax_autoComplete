@@ -144,7 +144,7 @@ $(document).on('focus','.autocomplete_txt',function(){
     if (type=='unit_cost')autoType='unit_cost';
   
     $(this).autocomplete({
-        minLength: 0,
+        minLength: 4,
         source: function( request, response ) {
             $.ajax({
                 url: "{{ route('searchajax') }}",
