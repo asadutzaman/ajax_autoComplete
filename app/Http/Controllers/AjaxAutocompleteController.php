@@ -13,12 +13,24 @@ class AjaxAutocompleteController extends Controller
         // $inventories=\DB::table('inventories')->select->('invoice_date');
         // $inventories=DB::Table('inventories')->select('invoice_date');
         //invoice_number
-        // if($request->type=='invoice_number'){
-        //     $inventories=DB::Table('inventories')->select('invoice_date');
-        //     $inventories->where('invoice_number','LIKE','%'.$query.'%');
-        // }
+        if($request->type=='invoice_number'){
+            $inventories=DB::Table('inventories')->select('invoice_number');
+            $inventories->where('invoice_number','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('invoice_number'=>$inventorie->invoice_number);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
         //invoice_date
-        if($request->type=='invoice_date'){
+        else if($request->type=='invoice_date'){
             $inventories=DB::Table('inventories')->select('invoice_date');
             $inventories->where('invoice_date','LIKE','%'.$query.'%');
 
@@ -34,8 +46,7 @@ class AjaxAutocompleteController extends Controller
                 return "No data found";
             }
         }
-        // //invoice_cost
-
+        //invoice_cost
         else if($request->type=='invoice_cost'){
             $inventories=DB::Table('inventories')->select('invoice_cost');
             $inventories->where('invoice_cost','LIKE','%'.$query.'%');
@@ -52,13 +63,23 @@ class AjaxAutocompleteController extends Controller
                 return "No data found";
             }
         }
-        // else if($request->type=='invoice_cost'){
-        //     $inventories->where('invoice_cost','LIKE','%'.$query.'%');
-        // }
-        // // lot_number
-        // else if($request->type=='lot_number'){
-        //     $inventories->where('lot_number', 'LIKE','%'.$query.'%');
-        // }
+        // lot_number
+        else if($request->type=='lot_number'){
+            $inventories=DB::Table('inventories')->select('lot_number');
+            $inventories->where('lot_number','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('lot_number'=>$inventorie->lot_number);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
         // // item_code
         // else if($request->type=='item_code'){
         //     $inventories->where('item_code','LIKE','%'.$query.'%');
