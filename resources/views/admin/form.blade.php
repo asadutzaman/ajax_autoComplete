@@ -86,6 +86,27 @@
                             <input class="form-control autocomplete_txt" type='text' data-type="unit_cost" id='unit_cost' name='unit_cost'/>
                             </div>
                         </div>
+                        <!--transportation_cost -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	transportation_cost:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="transportation_cost" id='transportation_cost' name='transportation_cost'/>
+                            </div>
+                        </div>
+                        <!--unit_total_cost -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	unit_total_cost:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="unit_total_cost" id='unit_total_cost' name='unit_total_cost'/>
+                            </div>
+                        </div>
+                        <!--selling_price -->
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-form-label">	selling_price:</label></br>
+                            <div class="col-sm-12">
+                            <input class="form-control autocomplete_txt" type='text' data-type="selling_price" id='selling_price' name='selling_price'/>
+                            </div>
+                        </div>
 
                         <!-- Button -->
                         <div class="form-group row">
@@ -142,6 +163,9 @@ $(document).on('focus','.autocomplete_txt',function(){
     if (type=='supplier_id')autoType='supplier_id';
     if (type=='total_item')autoType='total_item';
     if (type=='unit_cost')autoType='unit_cost';
+    if (type=='transportation_cost')autoType='transportation_cost';
+    if (type=='unit_total_cost')autoType='unit_total_cost';
+    if (type=='selling_price')autoType='selling_price';
   
     $(this).autocomplete({
         minLength: 4,

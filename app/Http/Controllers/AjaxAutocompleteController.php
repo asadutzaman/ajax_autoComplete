@@ -199,7 +199,56 @@ class AjaxAutocompleteController extends Controller
                 return "No data found";
             }
         }
+        // 	transportation_cost
+        else if($request->type=='transportation_cost'){
+            $inventories=DB::Table('inventories')->select('transportation_cost');
+            $inventories->where('transportation_cost','LIKE','%'.$query.'%');
 
-            
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('transportation_cost'=>$inventorie->transportation_cost);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        // 	unit_total_cost
+        else if($request->type=='unit_total_cost'){
+            $inventories=DB::Table('inventories')->select('unit_total_cost');
+            $inventories->where('unit_total_cost','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('unit_total_cost'=>$inventorie->unit_total_cost);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        // 	selling_price
+        else if($request->type=='selling_price'){
+            $inventories=DB::Table('inventories')->select('selling_price');
+            $inventories->where('selling_price','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('selling_price'=>$inventorie->selling_price);
+            }
+            if(count($data)){
+                return $data;
+            }
+            else {
+                return "No data found";
+            }
+        }
     }
 }
