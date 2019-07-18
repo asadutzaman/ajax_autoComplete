@@ -80,34 +80,125 @@ class AjaxAutocompleteController extends Controller
                 return "No data found";
             }
         }
-        // // item_code
-        // else if($request->type=='item_code'){
-        //     $inventories->where('item_code','LIKE','%'.$query.'%');
-        // }
+        // item_code
+        else if($request->type=='item_code'){
+            $inventories=DB::Table('inventories')->select('item_code');
+            $inventories->where('item_code','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('item_code'=>$inventorie->item_code);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
         // //products_id
-        // else if($request->type=='products_id'){
-        //     $inventories->where('products_id','LIKE','%'.$query.'%');
-        // }
-        // //product_name
-        // else if($request->type=='product_name'){
-        //     $inventories->where('product_name','LIKE','%'.$query.'%');
-        // }
-        // //category
-        // else if($request->type=='category'){
-        //     $inventories->where('category','LIKE','%'.$query.'%');
-        // }
-        // //supplier_id
-        // else if($request->type=='supplier_id'){
-        //     $inventories->where('supplier_id','LIKE','%'.$query.'%');
-        // }
-        // //total_item
-        // else if($request->type=='total_item'){
-        //     $inventories->where('total_item','LIKE','%'.$query.'%');
-        // }
-        // //total_item
-        // else if($request->type=='total_item'){
-        //     $inventories->where('total_item','LIKE','%'.$query.'%');
-        // }
+        else if($request->type=='products_id'){
+            $inventories=DB::Table('inventories')->select('products_id');
+            $inventories->where('products_id','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('products_id'=>$inventorie->products_id);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        //product_name
+        else if($request->type=='product_name'){
+            $inventories=DB::Table('inventories')->select('product_name');
+            $inventories->where('product_name','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('product_name'=>$inventorie->product_name);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        //category
+        else if($request->type=='category'){
+            $inventories=DB::Table('inventories')->select('category');
+            $inventories->where('category','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('category'=>$inventorie->category);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        // supplier_id
+        else if($request->type=='supplier_id'){
+            $inventories=DB::Table('inventories')->select('supplier_id');
+            $inventories->where('supplier_id','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('supplier_id'=>$inventorie->supplier_id);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        // total_item
+        else if($request->type=='total_item'){
+            $inventories=DB::Table('inventories')->select('total_item');
+            $inventories->where('total_item','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('total_item'=>$inventorie->total_item);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
+        // total_item
+        else if($request->type=='total_item'){
+            $inventories=DB::Table('inventories')->select('total_item');
+            $inventories->where('total_item','LIKE','%'.$query.'%');
+
+            $inventories=$inventories->get();        
+            $data=array();
+            foreach ($inventories as $inventorie) {
+                $data[]=array('total_item'=>$inventorie->total_item);
+            }
+            if(count($data)){
+                return $data;
+            }    
+            else {
+                return "No data found";
+            }
+        }
 
             
     }
