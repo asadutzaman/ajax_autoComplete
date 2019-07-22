@@ -16,6 +16,7 @@ class AjaxAutocompleteController extends Controller
         if($request->type=='invoice_number'){
             $inventories=DB::Table('inventories')->select('invoice_number');
             $inventories->where('invoice_number','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -33,6 +34,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='invoice_date'){
             $inventories=DB::Table('inventories')->select('invoice_date');
             $inventories->where('invoice_date','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -43,13 +45,14 @@ class AjaxAutocompleteController extends Controller
                 return $data;
             }    
             else {
-                return "No data found";
+                // return "No data found";
             }
         }
         //invoice_cost
         else if($request->type=='invoice_cost'){
             $inventories=DB::Table('inventories')->select('invoice_cost');
             $inventories->where('invoice_cost','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -67,6 +70,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='lot_number'){
             $inventories=DB::Table('inventories')->select('lot_number');
             $inventories->where('lot_number','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -84,6 +88,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='item_code'){
             $inventories=DB::Table('inventories')->select('item_code');
             $inventories->where('item_code','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -101,6 +106,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='products_id'){
             $inventories=DB::Table('inventories')->select('products_id');
             $inventories->where('products_id','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -118,6 +124,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='product_name'){
             $inventories=DB::Table('inventories')->select('product_name');
             $inventories->where('product_name','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -135,6 +142,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='category'){
             $inventories=DB::Table('inventories')->select('category');
             $inventories->where('category','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -152,6 +160,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='supplier_id'){
             $inventories=DB::Table('inventories')->select('supplier_id');
             $inventories->where('supplier_id','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -169,6 +178,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='total_item'){
             $inventories=DB::Table('inventories')->select('total_item');
             $inventories->where('total_item','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -186,6 +196,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='total_item'){
             $inventories=DB::Table('inventories')->select('total_item');
             $inventories->where('total_item','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -203,6 +214,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='transportation_cost'){
             $inventories=DB::Table('inventories')->select('transportation_cost');
             $inventories->where('transportation_cost','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();        
             $data=array();
@@ -220,6 +232,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='unit_total_cost'){
             $inventories=DB::Table('inventories')->select('unit_total_cost');
             $inventories->where('unit_total_cost','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();
             $data=array();
@@ -237,6 +250,7 @@ class AjaxAutocompleteController extends Controller
         else if($request->type=='selling_price'){
             $inventories=DB::Table('inventories')->select('selling_price');
             $inventories->where('selling_price','LIKE','%'.$query.'%');
+            $inventories->limit(10);
 
             $inventories=$inventories->get();
             $data=array();
