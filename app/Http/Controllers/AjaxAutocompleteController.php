@@ -5,8 +5,8 @@ use DB;
 class AjaxAutocompleteController extends Controller
 {
     public function index(){
-        
-        return view('admin.form');
+        $data = DB::table('inventories')->orderBy('id', 'asc')->paginate(5);
+        return view('admin.form', compact('data'));
     }
     public function searchResponse(Request $request){
         $query = $request->get('term','');

@@ -131,14 +131,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data as $row)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <th scope="row">{{ $row->id }}</th>
+                                    <td>{{ $row->invoice_number }}</td>
+                                    <td>{{ $row->invoice_date }}</td>
+                                    <td>{{ $row->invoice_cost }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        {!! $data->links() !!}
                     </div>
                 </div>
             </div> <!-- end col -->
