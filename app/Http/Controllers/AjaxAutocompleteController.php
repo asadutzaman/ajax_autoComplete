@@ -5,14 +5,11 @@ use DB;
 class AjaxAutocompleteController extends Controller
 {
     public function index(){
-        $data = DB::table('inventories')->orderBy('id', 'asc')->paginate(5);
+        $data = DB::table('inventories')->orderBy('id', 'asc')->paginate(10);
         return view('admin.form', compact('data'));
     }
     public function searchResponse(Request $request){
         $query = $request->get('term','');
-        // $inventories=\DB::table('inventories')->select->('invoice_date');
-        // $inventories=DB::Table('inventories')->select('invoice_date');
-        //invoice_number
         if($request->type=='invoice_number'){
             $inventories=DB::Table('inventories')->select('invoice_number');
             $inventories->where('invoice_number','LIKE','%'.$query.'%');

@@ -124,10 +124,10 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>ID</th>
+                                    <th>Invoice Number</th>
+                                    <th>Invoice date</th>
+                                    <th>Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
