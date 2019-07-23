@@ -38,4 +38,8 @@ Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController
 
 Route::resource('ajax-crud', 'AjaxController');
 
-Route::get('/pagination/fetch_data', 'AjaxAutocompleteController@fetch_data');
+
+
+Route::get('/pagination', 'PaginationController@index');
+
+Route::get('/pagination/fetch_data', 'PaginationController@fetch_data');
