@@ -25,8 +25,9 @@
      <thead>
       <tr>
        <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
-       <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="post_title" style="cursor: pointer">Title <span id="post_title_icon"></span></th>
-       <th width="57%">Description</th>
+       <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
+       <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
+       <th width="57%">Cost</th>
       </tr>
      </thead>
      <tbody>
@@ -47,7 +48,9 @@ $(document).ready(function(){
  function clear_icon()
  {
   $('#id_icon').html('');
-  $('#post_title_icon').html('');
+  $('#invoice_number_icon').html('');
+  $('#invoice_date_icon').html('');
+
  }
 
  function fetch_data(page, sort_type, sort_by, query)
