@@ -121,27 +121,22 @@
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Table</h4>
                         <p class="text-muted m-b-30 font-14">Supplier database table data</p>
-                        <table class="table table-bordered">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Invoice Number</th>
-                                    <th>Invoice date</th>
-                                    <th>Cost</th>
+                                    <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
+                                    <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Title <span id="post_title_icon"></span></th>
+                                    <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Title <span id="post_title_icon"></span></th>
+                                    <th width="57%">invoice_cost</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $row)
-                                <tr>
-                                    <th scope="row">{{ $row->id }}</th>
-                                    <td>{{ $row->invoice_number }}</td>
-                                    <td>{{ $row->invoice_date }}</td>
-                                    <td>{{ $row->invoice_cost }}</td>
-                                </tr>
-                                @endforeach
+                                @include('admin.pagination_data')
                             </tbody>
                         </table>
-                        {!! $data->links() !!}
+                        <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+                        <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
+                        <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
                     </div>
                 </div>
             </div> <!-- end col -->
@@ -195,4 +190,60 @@ $(document).on('focus','.autocomplete_txt',function(){
     });
 });
 </script>
+
+<script>
+$(document).ready(function(){
+
+    function clear_icon(){
+        $('#id_icon').html('');
+        $('#post_title_icon').html('');
+    }
+    // alert(clear_icon);
+
+    function fetch_data(page, sort_type, sort_by){
+        $.ajax({
+            url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
+            success:function(data){
+                $('tbody').html('');
+                $('tbody').html(data);
+            }
+        })
+    }
+
+    $(document).on('click', '.sorting', function(){
+        var column_name = $(this).data('column_name');
+        var order_type = $(this).data('sorting_type');
+        var reverse_order = '';
+        // alert(columna_name);
+        if(order_type == 'asc'){
+            $(this).data('sorting_type', 'desc');
+            reverse_order = 'desc';
+            clear_icon();
+            $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+        }
+        if(order_type == 'desc'){
+            $(this).data('sorting_type', 'asc');
+            reverse_order = 'asc';
+            clear_icon
+            $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+        }
+        $('#hidden_column_name').val(column_name);
+        $('#hidden_sort_type').val(reverse_order);
+        var page = $('#hidden_page').val();
+        fetch_data(page, reverse_order, column_name);
+    });
+
+    $(document).on('click', '.pagination a', function(event){
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        $('#hidden_page').val(page);
+        var column_name = $('#hidden_column_name').val();
+        var sort_type = $('#hidden_sort_type').val();
+
+        fetch_data(page, sort_type, column_name);
+    });
+
+});
+</script>
+
 @endsection

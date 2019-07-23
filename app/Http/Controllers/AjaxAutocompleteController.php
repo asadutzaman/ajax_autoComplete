@@ -8,6 +8,19 @@ class AjaxAutocompleteController extends Controller
         $data = DB::table('inventories')->orderBy('id', 'asc')->paginate(10);
         return view('admin.form', compact('data'));
     }
+    function fetch_data(Request $request)
+    {
+    if($request->ajax()){
+        $sort_by = $request->get('sortby');
+        $sort_type = $request->get('sorttype');
+        $data = DB::table('inventories')
+                    ->orderBy($sort_by, $sort_type)
+                    ->paginate(5);
+        return view('pagination_data', compact('data'))->render();
+    }
+    }
+
+
     public function searchResponse(Request $request){
         $query = $request->get('term','');
         if($request->type=='invoice_number'){
