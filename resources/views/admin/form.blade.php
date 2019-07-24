@@ -121,8 +121,8 @@
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Table</h4>
                         <p class="text-muted m-b-30 font-14">Supplier database table data</p>
-                        <div class="form-group">
-                            <input type="text" name="serach" id="serach" class="form-control" />
+                        <div class="form-group col-md-4 pull-right">
+                            <input type="text" name="serach" placeholder="Search" id="serach" class="form-control" />
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
