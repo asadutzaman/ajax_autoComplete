@@ -121,19 +121,23 @@
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Table</h4>
                         <p class="text-muted m-b-30 font-14">Supplier database table data</p>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
-                                    <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Title <span id="post_title_icon"></span></th>
-                                    <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Title <span id="post_title_icon"></span></th>
-                                    <th width="57%">invoice_cost</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @include('admin.pagination_data')
-                            </tbody>
-                        </table>
+                        <div class="form-group">
+                            <input type="text" name="serach" id="serach" class="form-control" />
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
+                                        <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
+                                        <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
+                                        <th width="57%">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @include('admin.pagination_data')
+                                </tbody>
+                            </table>
                         <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
                         <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
                         <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
@@ -196,13 +200,13 @@ $(document).ready(function(){
 
     function clear_icon(){
         $('#id_icon').html('');
-        $('#post_title_icon').html('');
+        $('#invoice_number_icon').html('');
+        $('#invoice_date_icon').html('');
     }
-    // alert(clear_icon);
 
-    function fetch_data(page, sort_type, sort_by){
+    function fetch_data(page, sort_type, sort_by, query){
         $.ajax({
-            url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
+            url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
             success:function(data){
                 $('tbody').html('');
                 $('tbody').html(data);
@@ -210,11 +214,18 @@ $(document).ready(function(){
         })
     }
 
+    $(document).on('keyup', '#serach', function(){
+        var query = $('#serach').val();
+        var column_name = $('#hidden_column_name').val();
+        var sort_type = $('#hidden_sort_type').val();
+        var page = $('#hidden_page').val();
+        fetch_data(page, sort_type, column_name, query);
+    });
+
     $(document).on('click', '.sorting', function(){
         var column_name = $(this).data('column_name');
         var order_type = $(this).data('sorting_type');
         var reverse_order = '';
-        // alert(columna_name);
         if(order_type == 'asc'){
             $(this).data('sorting_type', 'desc');
             reverse_order = 'desc';
@@ -230,7 +241,8 @@ $(document).ready(function(){
         $('#hidden_column_name').val(column_name);
         $('#hidden_sort_type').val(reverse_order);
         var page = $('#hidden_page').val();
-        fetch_data(page, reverse_order, column_name);
+        var query = $('#serach').val();
+        fetch_data(page, reverse_order, column_name, query);
     });
 
     $(document).on('click', '.pagination a', function(event){
@@ -240,7 +252,11 @@ $(document).ready(function(){
         var column_name = $('#hidden_column_name').val();
         var sort_type = $('#hidden_sort_type').val();
 
-        fetch_data(page, sort_type, column_name);
+        var query = $('#serach').val();
+
+        $('li').removeClass('active');
+        $(this).parent().addClass('active');
+        fetch_data(page, sort_type, column_name, query);
     });
 
 });

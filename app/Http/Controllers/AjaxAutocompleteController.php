@@ -4,20 +4,28 @@ use Illuminate\Http\Request;
 use DB;
 class AjaxAutocompleteController extends Controller
 {
-    public function index(){
+    function index()
+    {
         $data = DB::table('inventories')->orderBy('id', 'asc')->paginate(10);
         return view('admin.form', compact('data'));
     }
+
     function fetch_data(Request $request)
     {
-    if($request->ajax()){
-        $sort_by = $request->get('sortby');
-        $sort_type = $request->get('sorttype');
-        $data = DB::table('inventories')
+        if($request->ajax()){
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $data = DB::table('inventories')
+                    ->where('id', 'like', '%'.$query.'%')
+                    ->orWhere('invoice_number', 'like', '%'.$query.'%')
+                    ->orWhere('invoice_date', 'like', '%'.$query.'%')
+                    ->orWhere('invoice_cost', 'like', '%'.$query.'%')
                     ->orderBy($sort_by, $sort_type)
-                    ->paginate(5);
-        return view('pagination_data', compact('data'))->render();
-    }
+                    ->paginate(10);
+            return view('admin.pagination_data', compact('data'))->render();
+        }
     }
 
 
