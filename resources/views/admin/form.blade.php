@@ -124,11 +124,12 @@
                         <div class="form-group col-md-4 pull-right">
                             <input type="text" name="serach" placeholder="Search" id="serach" class="form-control" />
                         </div>
+                        <button onclick="myFunction()">Hide ID</button>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
+                                        <th width="5%" id="myDIV" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
                                         <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
                                         <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
                                         <th width="57%">Cost</th>
@@ -260,6 +261,20 @@ $(document).ready(function(){
     });
 
 });
+</script>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    // var y = document.grtElemantById("myDIV2")
+    if (x.style.display === "none") {
+        x.style.display = "";
+        // y.style.display = "block";
+    } else {
+        x.style.display = "none";
+        // y.style.display = "none";
+    }
+}
 </script>
 
 @endsection
