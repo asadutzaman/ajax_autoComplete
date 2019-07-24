@@ -129,7 +129,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="5%" id="myDIV" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
+                                        <th width="5%" id="myDIV" class="sorting myDIV" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
                                         <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
                                         <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
                                         <th width="57%">Cost</th>
@@ -265,7 +265,8 @@ $(document).ready(function(){
 
 <script>
 function myFunction() {
-    var x = document.getElementById("myDIV");
+    var x = document.getElementsByClassName("myDIV");
+    alert("test");
     // var y = document.grtElemantById("myDIV2")
     if (x.style.display === "none") {
         x.style.display = "";
