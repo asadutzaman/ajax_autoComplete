@@ -26,20 +26,12 @@ Route::get('/admin', function () {
 |
 */
 
-Route::get('/', function () {
-    return view('admin.form');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('autocomplete', 'AjaxAutocompleteController@index');
 Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController@searchResponse']);
-
-Route::resource('ajax-crud', 'AjaxController');
-
-
-
-// Route::get('/pagination', 'PaginationController@index');
-
 Route::get('/pagination/fetch_data', 'AjaxAutocompleteController@fetch_data');
+Route::resource('ajax-crud', 'AjaxController');
