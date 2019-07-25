@@ -154,161 +154,135 @@
     </div> 
 </div> 
 <script type="text/javascript">
-          
+    //filter autocomplete script
+    $(document).on('focus','.autocomplete_txt',function(){
+        type = $(this).data('type');
+    
+        if(type =='invoice_number' )autoType='invoice_number';
+        if(type == 'invoice_date')autoType='invoice_date';
+        if(type == 'invoice_cost')autoType='invoice_cost';
+        if (type=='lot_number')autoType='lot_number';
+        if (type=='item_code')autoType='item_code';
+        if (type=='products_id')autoType='products_id';
+        if (type=='product_name')autoType='product_name';
+        if (type=='category')autoType='category';
+        if (type=='supplier_id')autoType='supplier_id';
+        if (type=='total_item')autoType='total_item';
+        if (type=='unit_cost')autoType='unit_cost';
+        if (type=='transportation_cost')autoType='transportation_cost';
+        if (type=='unit_total_cost')autoType='unit_total_cost';
+        if (type=='selling_price')autoType='selling_price';
+    
+        $(this).autocomplete({
+            minLength: 4,
+            source: function( request, response ) {
+                $.ajax({
+                    url: "{{ route('searchajax') }}",
+                    dataType: "json",
+                    data: {
+                        term : request.term,
+                        type : type,
+                    },
+                    success: function(data) {
+                        var array = $.map(data, function (item) {
+                            return {
+                            label: item[autoType],
+                            value: item[autoType],
+                            data : item
+                            }
+                        });
+                        response(array)
+                    }
+                });
+            },
+        });
+    });
 
-//autocomplete script
-$(document).on('focus','.autocomplete_txt',function(){
-    type = $(this).data('type');
-  
-    if(type =='invoice_number' )autoType='invoice_number';
-    if(type == 'invoice_date')autoType='invoice_date';
-    if(type == 'invoice_cost')autoType='invoice_cost';
-    if (type=='lot_number')autoType='lot_number';
-    if (type=='item_code')autoType='item_code';
-    if (type=='products_id')autoType='products_id';
-    if (type=='product_name')autoType='product_name';
-    if (type=='category')autoType='category';
-    if (type=='supplier_id')autoType='supplier_id';
-    if (type=='total_item')autoType='total_item';
-    if (type=='unit_cost')autoType='unit_cost';
-    if (type=='transportation_cost')autoType='transportation_cost';
-    if (type=='unit_total_cost')autoType='unit_total_cost';
-    if (type=='selling_price')autoType='selling_price';
-  
-    $(this).autocomplete({
-        minLength: 4,
-        source: function( request, response ) {
+    //sorting and searching portion
+    $(document).ready(function(){
+
+        function clear_icon(){
+            $('#id_icon').html('');
+            $('#invoice_number_icon').html('');
+            $('#invoice_date_icon').html('');
+        }
+
+        function fetch_data(page, sort_type, sort_by, query){
             $.ajax({
-                url: "{{ route('searchajax') }}",
-                dataType: "json",
-                data: {
-                    term : request.term,
-                    type : type,
-                },
-                success: function(data) {
-                    var array = $.map(data, function (item) {
-                        return {
-                           label: item[autoType],
-                           value: item[autoType],
-                           data : item
-                        }
-                    });
-                    response(array)
+                url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                success:function(data){
+                    $('tbody').html('');
+                    $('tbody').html(data);
                 }
-            });
-        },
-    });
-});
-</script>
+            })
+        }
 
-<script>
-$(document).ready(function(){
+        $(document).on('keyup', '#serach', function(){
+            var query = $('#serach').val();
+            var column_name = $('#hidden_column_name').val();
+            var sort_type = $('#hidden_sort_type').val();
+            var page = $('#hidden_page').val();
+            fetch_data(page, sort_type, column_name, query);
+        });
 
-    function clear_icon(){
-        $('#id_icon').html('');
-        $('#invoice_number_icon').html('');
-        $('#invoice_date_icon').html('');
-    }
-
-    function fetch_data(page, sort_type, sort_by, query){
-        $.ajax({
-            url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
-            success:function(data){
-                $('tbody').html('');
-                $('tbody').html(data);
+        $(document).on('click', '.sorting', function(){
+            var column_name = $(this).data('column_name');
+            var order_type = $(this).data('sorting_type');
+            var reverse_order = '';
+            if(order_type == 'asc'){
+                $(this).data('sorting_type', 'desc');
+                reverse_order = 'desc';
+                clear_icon();
+                $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
             }
-        })
-    }
+            if(order_type == 'desc'){
+                $(this).data('sorting_type', 'asc');
+                reverse_order = 'asc';
+                clear_icon
+                $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+            }
+            $('#hidden_column_name').val(column_name);
+            $('#hidden_sort_type').val(reverse_order);
+            var page = $('#hidden_page').val();
+            var query = $('#serach').val();
+            fetch_data(page, reverse_order, column_name, query);
+        });
 
-    $(document).on('keyup', '#serach', function(){
-        var query = $('#serach').val();
-        var column_name = $('#hidden_column_name').val();
-        var sort_type = $('#hidden_sort_type').val();
-        var page = $('#hidden_page').val();
-        fetch_data(page, sort_type, column_name, query);
+        $(document).on('click', '.pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            $('#hidden_page').val(page);
+            var column_name = $('#hidden_column_name').val();
+            var sort_type = $('#hidden_sort_type').val();
+            var query = $('#serach').val();
+            
+            $('li').removeClass('active');
+            $(this).parent().addClass('active');
+            fetch_data(page, sort_type, column_name, query);
+        });
+
     });
 
-    $(document).on('click', '.sorting', function(){
-        var column_name = $(this).data('column_name');
-        var order_type = $(this).data('sorting_type');
-        var reverse_order = '';
-        if(order_type == 'asc'){
-            $(this).data('sorting_type', 'desc');
-            reverse_order = 'desc';
-            clear_icon();
-            $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+    //table colimn hide and show portion
+    function hide_show_table(col_name){
+        var checkbox_val=document.getElementById(col_name).value;
+        if(checkbox_val=="hide"){
+            var all_col=document.getElementsByClassName(col_name);
+            for(var i=0;i<all_col.length;i++){
+                all_col[i].style.display="none";
+            }
+            document.getElementById(col_name+"_head").style.display="none";
+            document.getElementById(col_name).value="show";
         }
-        if(order_type == 'desc'){
-            $(this).data('sorting_type', 'asc');
-            reverse_order = 'asc';
-            clear_icon
-            $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+        else{
+            var all_col=document.getElementsByClassName(col_name);
+            for(var i=0;i<all_col.length;i++){
+                all_col[i].style.display="table-cell";
+            }
+            document.getElementById(col_name+"_head").style.display="table-cell";
+            document.getElementById(col_name).value="hide";
         }
-        $('#hidden_column_name').val(column_name);
-        $('#hidden_sort_type').val(reverse_order);
-        var page = $('#hidden_page').val();
-        var query = $('#serach').val();
-        fetch_data(page, reverse_order, column_name, query);
-    });
-
-    $(document).on('click', '.pagination a', function(event){
-        event.preventDefault();
-        var page = $(this).attr('href').split('page=')[1];
-        $('#hidden_page').val(page);
-        var column_name = $('#hidden_column_name').val();
-        var sort_type = $('#hidden_sort_type').val();
-
-        var query = $('#serach').val();
-
-        $('li').removeClass('active');
-        $(this).parent().addClass('active');
-        fetch_data(page, sort_type, column_name, query);
-    });
-
-});
-</script>
-
-<script>
-function myFunction() {
-    var x = document.getElementsByClassName("myDIV");
-    alert("test");
-    // var y = document.grtElemantById("myDIV2")
-    if (x.style.display === "none") {
-        x.style.display = "";
-        // y.style.display = "block";
-    } else {
-        x.style.display = "none";
-        // y.style.display = "none";
     }
-}
-</script>
-
-<script type="text/javascript">
-function hide_show_table(col_name)
-{
- var checkbox_val=document.getElementById(col_name).value;
- if(checkbox_val=="hide")
- {
-  var all_col=document.getElementsByClassName(col_name);
-  for(var i=0;i<all_col.length;i++)
-  {
-   all_col[i].style.display="none";
-  }
-  document.getElementById(col_name+"_head").style.display="none";
-  document.getElementById(col_name).value="show";
- }
-	
- else
- {
-  var all_col=document.getElementsByClassName(col_name);
-  for(var i=0;i<all_col.length;i++)
-  {
-   all_col[i].style.display="table-cell";
-  }
-  document.getElementById(col_name+"_head").style.display="table-cell";
-  document.getElementById(col_name).value="hide";
- }
-}
 </script>
 
 @endsection
