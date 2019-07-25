@@ -120,19 +120,24 @@
                 <div class="card m-b-20">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Table</h4>
+                        <div id="checkbox_div">
+                            <p>Hide Column</p>
+                            <li><input type="checkbox" value="hide" id="invoice_col_hs" onchange="hide_show_table(this.id);">Invoice Number</li>
+                            <li><input type="checkbox" value="hide" id="invoice_date_hs" onchange="hide_show_table(this.id);">Date</li>
+                            <li><input type="checkbox" value="hide" id="invoice_cost_hs" onchange="hide_show_table(this.id);">Cost</li>
+                        </div>
                         <p class="text-muted m-b-30 font-14">Supplier database table data</p>
                         <div class="form-group col-md-4 pull-right">
                             <input type="text" name="serach" placeholder="Search" id="serach" class="form-control" />
                         </div>
-                        <button onclick="myFunction()">Hide ID</button>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="5%" id="myDIV" class="sorting myDIV" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
-                                        <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
-                                        <th width="38%" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
-                                        <th width="57%">Cost</th>
+                                        <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
+                                        <th width="38%" id="invoice_col_hs_head" class="sorting" data-sorting_type="asc" data-column_name="invoice_number" style="cursor: pointer">Invoice Number <span id="invoice_number_icon"></span></th>
+                                        <th width="38%" id="invoice_date_hs_head" class="sorting" data-sorting_type="asc" data-column_name="invoice_date" style="cursor: pointer">Invoice date <span id="invoice_date_icon"></span></th>
+                                        <th width="57%" id="invoice_cost_hs_head">Cost</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -275,6 +280,34 @@ function myFunction() {
         x.style.display = "none";
         // y.style.display = "none";
     }
+}
+</script>
+
+<script type="text/javascript">
+function hide_show_table(col_name)
+{
+ var checkbox_val=document.getElementById(col_name).value;
+ if(checkbox_val=="hide")
+ {
+  var all_col=document.getElementsByClassName(col_name);
+  for(var i=0;i<all_col.length;i++)
+  {
+   all_col[i].style.display="none";
+  }
+  document.getElementById(col_name+"_head").style.display="none";
+  document.getElementById(col_name).value="show";
+ }
+	
+ else
+ {
+  var all_col=document.getElementsByClassName(col_name);
+  for(var i=0;i<all_col.length;i++)
+  {
+   all_col[i].style.display="table-cell";
+  }
+  document.getElementById(col_name+"_head").style.display="table-cell";
+  document.getElementById(col_name).value="hide";
+ }
 }
 </script>
 
