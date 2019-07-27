@@ -283,6 +283,21 @@
             document.getElementById(col_name).value="hide";
         }
     }
+    //filter data
+    function filterSearch() {
+        var action = 'fetch_data';
+        var x = $('#x').val();
+        var y = $('#y').val();
+        $.ajax({
+            url:"action.php",
+            method:"POST",
+            dataType: "json",
+            data:{action:action, x: x, y:y, },
+            success:function(data){
+                $('.searchResult').html(data.html);
+            }
+        });
+    }
 </script>
 
 @endsection
