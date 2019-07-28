@@ -230,7 +230,7 @@ class AjaxAutocompleteController extends Controller
         }
         // 	unit_total_cost
         else if($request->type=='unit_total_cost'){
-            $inventories=DB::Table('inventories')->select('unit_total_cost');
+            $inventories=DB::Table('inventories')->select('unit_total_cost')->distinct();
             $inventories->where('unit_total_cost','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
@@ -241,7 +241,7 @@ class AjaxAutocompleteController extends Controller
             }
             if(count($data)){
                 return $data;
-            }    
+            }
             else {
                 return "No data found";
             }
