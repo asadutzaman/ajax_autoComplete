@@ -194,18 +194,18 @@ class AjaxAutocompleteController extends Controller
         }
         // total_item
         else if($request->type=='total_item'){
-            $inventories=DB::Table('inventories')->select('total_item');
+            $inventories=DB::Table('inventories')->select('total_item')->distinct();
             $inventories->where('total_item','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
-            $inventories=$inventories->get();        
+            $inventories=$inventories->get();
             $data=array();
             foreach ($inventories as $inventorie) {
                 $data[]=array('total_item'=>$inventorie->total_item);
             }
             if(count($data)){
                 return $data;
-            }    
+            }
             else {
                 return "No data found";
             }
