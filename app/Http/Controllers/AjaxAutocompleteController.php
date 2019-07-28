@@ -28,7 +28,6 @@ class AjaxAutocompleteController extends Controller
         }
     }
 
-
     public function searchResponse(Request $request){
         $query = $request->get('term','');
         $field = $request->get('type');
@@ -49,6 +48,20 @@ class AjaxAutocompleteController extends Controller
             else {
                 return "No data found";
             }
+        }
+    }
+
+    public function filter_data(Request $request){
+        if($request->ajax()){
+            $invoice_number = $request->get('invoice_number');
+            $invoice_cost = $request->get('invoice_cost');
+            
+            $data = DB::table('inventories')
+                    ->where('invoice_number', 'like', $invoice_number)
+                    ->orWhere('invoice_cost', 'like', $invoice_cost)
+                    ->paginate(10);
+                    
+            return view('admin.pagination_data', compact('data'))->render();
         }
     }
 }

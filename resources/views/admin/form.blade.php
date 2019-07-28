@@ -9,6 +9,7 @@
 
                         <h4 class="mt-0 header-title">Form</h4>
                         <p class="text-muted m-b-30 font-14">Inventory database table data</p>
+                        <form method="post" id="add_form">
                         <!-- Invoice Number -->
                         <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">invoice_number:</label></br>
@@ -31,87 +32,88 @@
                             </div>
                         </div>
                         <!-- lot_number -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">lot_number:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="lot_number" id='lot_number' name='lot_number'/>
                             </div>
-                        </div>
-                        <!--item_code -->
-                        <div class="form-group row">
+                        </div> -->
+                        <!-- item_code -->
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	item_code:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="item_code" id='item_code' name='item_code'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--products_id -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	products_id:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="products_id" id='products_id' name='products_id'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--product_name -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	product_name:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="product_name" id='product_name' name='product_name'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--category -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	category:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="category" id='category' name='category'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--supplier_id -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	supplier_id:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="supplier_id" id='supplier_id' name='supplier_id'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--total_item -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	total_item:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="total_item" id='total_item' name='total_item'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--unit_cost -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	unit_cost:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="unit_cost" id='unit_cost' name='unit_cost'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--transportation_cost -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	transportation_cost:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="transportation_cost" id='transportation_cost' name='transportation_cost'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--unit_total_cost -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	unit_total_cost:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="unit_total_cost" id='unit_total_cost' name='unit_total_cost'/>
                             </div>
-                        </div>
+                        </div> -->
                         <!--selling_price -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-form-label">	selling_price:</label></br>
                             <div class="col-sm-12">
                             <input class="form-control autocomplete_txt" type='text' data-type="selling_price" id='selling_price' name='selling_price'/>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Button -->
                         <div class="form-group row">
-                            <button class="success">Submit </button>
+                            <button class="success" name="submit" type="submit" value="Submit">Submit </button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div> <!-- end col -->
@@ -158,9 +160,9 @@
     $(document).on('focus','.autocomplete_txt',function(){
         type = $(this).data('type');
     
-        if(type =='invoice_number' )autoType='invoice_number';
-        if(type == 'invoice_date')autoType='invoice_date';
-        if(type == 'invoice_cost')autoType='invoice_cost';
+        if (type =='invoice_number' )autoType='invoice_number';
+        if (type == 'invoice_date')autoType='invoice_date';
+        if (type == 'invoice_cost')autoType='invoice_cost';
         if (type=='lot_number')autoType='lot_number';
         if (type=='item_code')autoType='item_code';
         if (type=='products_id')autoType='products_id';
@@ -284,20 +286,25 @@
         }
     }
     //filter data
-    function filterSearch() {
-        var action = 'fetch_data';
-        var x = $('#x').val();
-        var y = $('#y').val();
-        $.ajax({
-            url:"action.php",
-            method:"POST",
-            dataType: "json",
-            data:{action:action, x: x, y:y, },
-            success:function(data){
-                $('.searchResult').html(data.html);
-            }
+  
+</script>
+<script>
+    $(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            //var invoice_number = document.getElementById("invoice_number").value;
+            //alert(invoice_number);
+            $.ajax({
+                type: 'get',
+                url: 'filter_data',
+                data: $('form').serialize(),
+                success:function(data){
+                    $('tbody').html('');
+                    $('tbody').html(data);
+                }
+            });
         });
-    }
+    });
 </script>
 
 @endsection
