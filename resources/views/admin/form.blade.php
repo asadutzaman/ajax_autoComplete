@@ -181,7 +181,7 @@
                     dataType: "json",
                     data: {
                         term : request.term,
-                        type : request.type,
+                        type : type,
                     },
                     success: function(data) {
                         var array = $.map(data, function (item) {
