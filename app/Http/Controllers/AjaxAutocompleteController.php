@@ -248,7 +248,7 @@ class AjaxAutocompleteController extends Controller
         }
         // 	selling_price
         else if($request->type=='selling_price'){
-            $inventories=DB::Table('inventories')->select('selling_price');
+            $inventories=DB::Table('inventories')->select('selling_price')->distinct();
             $inventories->where('selling_price','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
