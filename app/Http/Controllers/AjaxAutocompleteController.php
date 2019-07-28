@@ -68,7 +68,7 @@ class AjaxAutocompleteController extends Controller
         }
         //invoice_cost
         else if($request->type=='invoice_cost'){
-            $inventories=DB::Table('inventories')->select('invoice_cost');
+            $inventories=DB::Table('inventories')->select('invoice_cost')->distinct();
             $inventories->where('invoice_cost','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
