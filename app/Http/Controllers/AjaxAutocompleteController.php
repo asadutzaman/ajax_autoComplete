@@ -158,7 +158,7 @@ class AjaxAutocompleteController extends Controller
         }
         //category
         else if($request->type=='category'){
-            $inventories=DB::Table('inventories')->select('category');
+            $inventories=DB::Table('inventories')->select('category')->distinct();
             $inventories->where('category','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
