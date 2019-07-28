@@ -50,7 +50,7 @@ class AjaxAutocompleteController extends Controller
         }
         //invoice_date
         else if($request->type=='invoice_date'){
-            $inventories=DB::Table('inventories')->select('invoice_date');
+            $inventories=DB::Table('inventories')->select('invoice_date')->distinct();
             $inventories->where('invoice_date','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
