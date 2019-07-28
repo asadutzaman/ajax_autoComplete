@@ -32,7 +32,7 @@ class AjaxAutocompleteController extends Controller
     public function searchResponse(Request $request){
         $query = $request->get('term','');
         if($request->type=='invoice_number'){
-            $inventories=DB::Table('inventories')->select('invoice_number');
+            $inventories=DB::Table('inventories')->select('invoice_number')->distinct();
             $inventories->where('invoice_number','LIKE','%'.$query.'%');
             $inventories->limit(10);
 

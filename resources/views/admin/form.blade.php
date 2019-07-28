@@ -174,7 +174,7 @@
         if (type=='selling_price')autoType='selling_price';
     
         $(this).autocomplete({
-            minLength: 4,
+            minLength: 2,
             source: function( request, response ) {
                 $.ajax({
                     url: "{{ route('searchajax') }}",
