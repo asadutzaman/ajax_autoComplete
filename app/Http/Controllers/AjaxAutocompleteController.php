@@ -176,18 +176,18 @@ class AjaxAutocompleteController extends Controller
         }
         // supplier_id
         else if($request->type=='supplier_id'){
-            $inventories=DB::Table('inventories')->select('supplier_id');
+            $inventories=DB::Table('inventories')->select('supplier_id')->distinct();
             $inventories->where('supplier_id','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
-            $inventories=$inventories->get();        
+            $inventories=$inventories->get();
             $data=array();
             foreach ($inventories as $inventorie) {
                 $data[]=array('supplier_id'=>$inventorie->supplier_id);
             }
             if(count($data)){
                 return $data;
-            }    
+            }
             else {
                 return "No data found";
             }
