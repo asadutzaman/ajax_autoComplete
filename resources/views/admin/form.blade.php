@@ -181,14 +181,14 @@
                     dataType: "json",
                     data: {
                         term : request.term,
-                        type : type,
+                        type : request.type,
                     },
                     success: function(data) {
                         var array = $.map(data, function (item) {
                             return {
-                            label: item[autoType],
-                            value: item[autoType],
-                            data : item
+                                label: item[autoType],
+                                value: item[autoType],
+                                data : item
                             }
                         });
                         response(array)
