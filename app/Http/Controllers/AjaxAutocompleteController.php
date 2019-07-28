@@ -122,7 +122,7 @@ class AjaxAutocompleteController extends Controller
         }
         // //products_id
         else if($request->type=='products_id'){
-            $inventories=DB::Table('inventories')->select('products_id');
+            $inventories=DB::Table('inventories')->select('products_id')->distinct();
             $inventories->where('products_id','LIKE','%'.$query.'%');
             $inventories->limit(10);
 
