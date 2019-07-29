@@ -54,6 +54,7 @@ class AjaxAutocompleteController extends Controller
     public function filter_data(Request $request){
         if($request->ajax()){
             $invoice_number = $request->get('invoice_number');
+            $invoice_date = $request->get('invoice_date');
             $invoice_cost = $request->get('invoice_cost');
             
             $data = DB::table('inventories')
