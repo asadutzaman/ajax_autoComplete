@@ -111,7 +111,8 @@
 
                         <!-- Button -->
                         <div class="form-group row">
-                            <button class="success" name="submit" type="submit" value="Submit">Submit </button>
+                            <button class="success" name="submit" type="submit" value="Submit">Submit </button></br> &nbsp;
+                            <button class="success" name="submit_ind" type="submit" value="submit_ind">submit_ind</button>
                         </div>
                         </form>
                     </div>
@@ -286,9 +287,6 @@
         }
     }
     //filter data
-  
-</script>
-<script>
     $(function () {
         $('form').on('submit', function (e) {
             e.preventDefault();
@@ -297,6 +295,24 @@
             $.ajax({
                 type: 'get',
                 url: 'filter_data',
+                data: $('form').serialize(),
+                success:function(data){
+                    $('tbody').html('');
+                    $('tbody').html(data);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+    //individual filter data
+    $(function () {
+        $('form').on('submit_ind', function (e) {
+            alert('test');
+            e.preventDefault();
+            $.ajax({
+                type: 'get',
+                url: 'filter_data_ind',
                 data: $('form').serialize(),
                 success:function(data){
                     $('tbody').html('');

@@ -59,6 +59,23 @@ class AjaxAutocompleteController extends Controller
             
             $data = DB::table('inventories')
                     ->where('invoice_number', 'like', $invoice_number)
+                    ->Where('invoice_date', 'like', $invoice_date)
+                    ->Where('invoice_cost', 'like', $invoice_cost)
+                    ->paginate(10);
+                    
+            return view('admin.pagination_data', compact('data'))->render();
+        }
+    }
+
+    public function filter_data_ind(Request $request){
+        if($request->ajax()){
+            $invoice_number = $request->get('invoice_number');
+            $invoice_date = $request->get('invoice_date');
+            $invoice_cost = $request->get('invoice_cost');
+            
+            $data = DB::table('inventories')
+                    ->where('invoice_number', 'like', $invoice_number)
+                    ->orWhere('invoice_date', 'like', $invoice_date)
                     ->orWhere('invoice_cost', 'like', $invoice_cost)
                     ->paginate(10);
                     
